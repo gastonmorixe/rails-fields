@@ -1,0 +1,8 @@
+--protected
+--private
+--embed-mixins
+--debug
+--markup=markdown
+--readme=README.md
+--title='Rails Fields - Ruby API Documentation'
+'lib/**/*.rb' - '*.md'

@@ -1,0 +1,5 @@
+Markdown:
+  # Whether to run RuboCop against non-valid snippets
+  WarnInvalid: false
+  # Whether to lint codeblocks without code attributes
+  Autodetect: false
