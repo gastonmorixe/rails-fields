@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://rails-field.dev" />
   <style>
     body {
-      font-family: san-serif;
+      font-family: sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 0;
@@ -27,6 +27,10 @@
     .links a {
       margin-right: 10px;
     }
+    #content { 
+      max-width: 90ch;
+      margin: 0 auto;
+    }
     @media (max-width: 600px) {
       main {
         padding: 10px;
@@ -35,26 +39,28 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/gastonmorixe/rails-fields/main/assets/logo.svg" width="300" alt="Rails Fields Logo">
-    <h2>Rails Fields</h2>
-  </header>
-  <main>
-    <p>Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.</p>
-    <ul>
-      <li>🚀 Automagic ActiveRecord Migrations generations</li>
-      <li>🦄 Automatic GraphqQL types generation</li>
-      <li>📝 Explicit declarative model attributes annotation</li>
-      <li>💪 Enforcement of fields declaration with real db columns</li>
-      <li>📜 Automatic YARD model documentation</li>
-    </ul>
-    <p>
-      The <code>rails-fields</code> gem provides robust field type enforcement for ActiveRecord models in Ruby on Rails applications. It includes utility methods for type validation, logging, and field mappings between GraphQL and ActiveRecord types.
-    </p>
-    <div class="links">
-      <a href="https://github.com/gastonmorixe/rails-fields" target="_blank">GitHub</a>
-      <a href="https://rubygems.org/gems/rails-fields" target="_blank">RubyGems</a>
-    </div>
-  </main>
+  <div id="content">
+    <header>
+      <img src="https://raw.githubusercontent.com/gastonmorixe/rails-fields/main/assets/logo.svg" width="300" alt="Rails Fields Logo">
+      <h2>Rails Fields</h2>
+    </header>
+    <main>
+      <p>Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.</p>
+      <ul>
+        <li>🚀 Automagic ActiveRecord Migrations generations</li>
+        <li>🦄 Automatic GraphqQL types generation</li>
+        <li>📝 Explicit declarative model attributes annotation</li>
+        <li>💪 Enforcement of fields declaration with real db columns</li>
+        <li>📜 Automatic YARD model documentation</li>
+      </ul>
+      <p>
+        The <code>rails-fields</code> gem provides robust field type enforcement for ActiveRecord models in Ruby on Rails applications. It includes utility methods for type validation, logging, and field mappings between GraphQL and ActiveRecord types.
+      </p>
+      <div class="links">
+        <a href="https://github.com/gastonmorixe/rails-fields" target="_blank">GitHub</a>
+        <a href="https://rubygems.org/gems/rails-fields" target="_blank">RubyGems</a>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
