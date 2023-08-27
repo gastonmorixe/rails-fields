@@ -1,4 +1,6 @@
 - [ ] Generators
+   - Install
+   - Forms, partial, show, etc
 - [ ] Install to ApplicationRecord by default
 - [ ] Downgrade ruby version limit
 - [ ] Proper dependencies (rails) and gql optional (make sure it doesn't crash nor define #gql_type
@@ -11,3 +13,6 @@
 - [ ] Generate docs (yard)
     - publish it
     - automate this
+- [ ] Add tests
+- [ ] Add more examples
+- [ ] Record a screencast
