@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/logo.svg" width="300" />
+</p>
+
 # Rails Fields
 
 ## Summary
