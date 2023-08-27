@@ -8,9 +8,9 @@
 
 Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.
 
-- 🚀 Automagic ActiveRecord Migrations generations
+- 🚀 Automagic ActiveRecord **Migrations** generation
 - 🦄 Automatic [GraphqQL types](https://graphql-ruby.org/type_definitions/objects.html) generation
-- 📝 Explicit declarative model attributes annotation
+- 📝 Explicit **declarative** model attributes annotation
 - 💪🏻 Enforcement of fields declaration with real db columns
 - 📜 Automatic YARD model documentation
 
