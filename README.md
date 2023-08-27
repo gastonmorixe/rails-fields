@@ -2,9 +2,10 @@
   <img src="./assets/logo.svg" width="300" />
 </p>
 
+[![Gem Version](https://badge.fury.io/rb/rails-fields.svg)](https://badge.fury.io/rb/rails-fields)
+
 # Rails Fields
 
-## Summary
 Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.
 
 ## Description
