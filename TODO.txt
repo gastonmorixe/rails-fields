@@ -1,0 +1,2 @@
+- [ ] Generators
+- [ ] Install to ApplicationRecord by default
