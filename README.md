@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/logo.svg" width="300" />
+  <a href="https://rails-fields.dev" target="_blank"><img src="./assets/logo.svg" width="300" /></a>
 </p>
 
 [![Gem Version](https://badge.fury.io/rb/rails-fields.svg)](https://badge.fury.io/rb/rails-fields)
