@@ -8,6 +8,12 @@
 
 Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.
 
+- 🚀 Automagic ActiveRecors Migrations generations
+- 🦄 Automatic GraphqQL types generation
+- 📝 Explicit declarative model annotation
+- 💪🏻 Enforcement of fields declaration with real db columns
+- 📜 Automatic YARD model documentation
+
 ## Description
 The `rails-fields` gem provides robust field type enforcement for ActiveRecord models in Ruby on Rails applications. It includes utility methods for type validation, logging, and field mappings between GraphQL and ActiveRecord types. Custom error classes provide clear diagnostics for field-related issues, making it easier to maintain consistent data models.
 
