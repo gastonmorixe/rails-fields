@@ -4,5 +4,6 @@
 --debug
 --markup=markdown
 --readme=README.md
+--output-dir=./docs/yard
 --title='Rails Fields - Ruby API Documentation'
-'lib/**/*.rb' - '*.md'
+'lib/**/*.rb' - '*.md'.yardoc/
