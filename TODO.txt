@@ -1,2 +1,13 @@
 - [ ] Generators
 - [ ] Install to ApplicationRecord by default
+- [ ] Downgrade ruby version limit
+- [ ] Proper dependencies (rails) and gql optional (make sure it doesn't crash nor define #gql_type
+- [ ] Better readme with features:
+    - automatic migrations
+    - automatic gql types
+    - declarative schema enforcement in sync with db
+    - alternative to annotate
+    - automatic docs (yard)
+- [ ] Generate docs (yard)
+    - publish it
+    - automate this
