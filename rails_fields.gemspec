@@ -34,6 +34,4 @@ Gem::Specification.new do |spec|
   # Development Dependencies
   spec.add_development_dependency "graphql"
   spec.add_development_dependency "yard"
-  spec.add_development_dependency "jekyll"
-  spec.add_development_dependency "webrick"
 end
