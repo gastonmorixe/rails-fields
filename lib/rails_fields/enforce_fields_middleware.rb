@@ -1,14 +1,14 @@
-puts "RailsFields::EnforceFieldsMiddleware"
+Rails.logger.debug "RailsFields::EnforceFieldsMiddleware"
 
 module RailsFields
   class EnforceFieldsMiddleware
     def initialize(app)
       @app = app
-      puts "RailsFields::EnforceFieldsMiddleware initialize"
+      Rails.logger.debug "RailsFields::EnforceFieldsMiddleware initialize"
     end
 
     def call(env)
-      puts "RailsFields::EnforceFieldsMiddleware call"
+      Rails.logger.debug "RailsFields::EnforceFieldsMiddleware call"
       ApplicationRecord.descendants.each do |model|
         model.enforce_declared_fields # if model.respond_to?(:enforce_declared_fields)
       end

@@ -8,7 +8,7 @@
 
 Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.
 
-- 🚀 Automagic ActiveRecord **Migrations** generation
+- 🚀 Auto-magic ActiveRecord **Migrations** generation
 - 🦄 Automatic [GraphQL types](https://graphql-ruby.org/type_definitions/objects.html) generation
 - 📝 Explicit **declarative** model attributes annotation
 - 💪🏻 Enforcement of fields declaration with real db columns
@@ -75,18 +75,6 @@ And then execute:
 
 ```bash
 $ bundle install
-```
-Update your `ApplicationRecord`:
-
-```patch
-+require 'rails_fields'
-
-class ApplicationRecord < ActiveRecord::Base
-  primary_abstract_class
-
-+  extend RailsFields::ClassMethods
-+  include RailsFields
-end
 ```
 
 ## License

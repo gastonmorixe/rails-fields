@@ -2,7 +2,7 @@ require "active_support"
 require "active_support/rails"
 require "rails_fields/enforce_fields_middleware"
 
-puts "RailsFields::Railtie"
+Rails.logger.debug "RailsFields::Railtie"
 
 module RailsFields
   class Railtie < Rails::Railtie
