@@ -2,8 +2,6 @@ require "active_support"
 require "active_support/rails"
 require "rails_fields/enforce_fields_middleware"
 
-Rails.logger.debug "RailsFields::Railtie"
-
 module RailsFields
   class Railtie < Rails::Railtie
     # config.eager_load_namespaces << RailsFields

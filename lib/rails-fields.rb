@@ -9,11 +9,8 @@ require "rails_fields/class_methods"
 require "rails_fields/instance_methods"
 require "rails_fields/enforce_fields_middleware"
 
-Rails.logger.debug "RailsFields file root"
-
 # Provides enforcement of declared field for ActiveRecord models.
 module RailsFields
-  Rails.logger.debug "RailsFields module"
   @processed_classes = {}
 
   def self.processed_classes
