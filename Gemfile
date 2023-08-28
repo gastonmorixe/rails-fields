@@ -11,6 +11,10 @@ group :development, :test do
 
   gem "solargraph"
   gem "debug", platforms: %i[mri windows]
+
+  gem "railties"
+  gem "activerecord"
+  gem "activesupport"
 end
 
 # gem "solargraph-rails", "~> 1.1.0"
