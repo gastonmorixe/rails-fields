@@ -61,8 +61,7 @@ module RailsFields
           type_name = type[:name]
           if previous_fields[name]
             if previous_fields[name] != type_name
-              model_changes[:type_changed] << { name:, from: previous_fields[name],
-                                                to: type }
+              model_changes[:type_changed] << { name:, from: previous_fields[name], to: type }
             end
           else
             model_changes[:added] << { name:, type: }
@@ -177,7 +176,7 @@ module RailsFields
 
         # Handle fields' type changes
         model_changes.dig(:type_changed)&.each do |change|
-          change_to = change[:to]
+          change_to = change[:to][:name]
           migration_code << "    change_column :#{model_name.tableize}, :#{change[:name]}, :#{change_to}"
         end
 

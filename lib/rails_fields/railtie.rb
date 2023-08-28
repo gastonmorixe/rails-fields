@@ -14,7 +14,7 @@ module RailsFields
     end
 
     initializer "rails_fields.middleware" do |app|
-      app.middleware.insert_before ActiveRecord::Migration::CheckPending, RailsFields::EnforceFieldsMiddleware
+      app.middleware.insert_after ActiveRecord::Migration::CheckPending, RailsFields::EnforceFieldsMiddleware
     end
   end
 end
