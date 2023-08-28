@@ -68,9 +68,9 @@
 <p>Enforce field types and attributes for ActiveRecord models in Ruby on Rails applications.</p>
 
 <ul>
-  <li>🚀 Automagic ActiveRecord Migrations generations</li>
-  <li>🦄 Automatic <a href="https://graphql-ruby.org/type_definitions/objects.html">GraphqQL types</a> generation</li>
-  <li>📝 Explicit declarative model attributes annotation</li>
+  <li>🚀 Auto-magic ActiveRecord <strong>Migrations</strong> generation</li>
+  <li>🦄 Automatic <a href="https://graphql-ruby.org/type_definitions/objects.html">GraphQL types</a> generation</li>
+  <li>📝 Explicit <strong>declarative</strong> model attributes annotation</li>
   <li>💪🏻 Enforcement of fields declaration with real db columns</li>
   <li>📜 Automatic YARD model documentation</li>
 </ul>
@@ -137,21 +137,7 @@ gem 'graphql'
 
 <p><code>bash
 $ bundle install
-</code>
-Update your <code>ApplicationRecord</code>:</p>
-
-<p>```patch
-+require ‘rails_fields’</p>
-
-<p>class ApplicationRecord &lt; ActiveRecord::Base
-  primary_abstract_class</p>
-
-<ul>
-  <li>extend RailsFields::ClassMethods</li>
-  <li>include RailsFields
-end
-```</li>
-</ul>
+</code></p>
 
 <h2 id="license">License</h2>
 
@@ -163,7 +149,7 @@ end
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 27 17:34:57 2023 by
+  Generated on Mon Aug 28 02:43:30 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
