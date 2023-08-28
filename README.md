@@ -83,4 +83,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Author
 
-Gaston Morixe - gaston@gastonmorixe.com
+Gaston Morixe 2023 - gaston@gastonmorixe.com
