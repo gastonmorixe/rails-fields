@@ -1,4 +1,7 @@
 module RailsFields
+  # Lightweight, typed container for field declarations
+  # Include :options to maintain compatibility with code that reads it
+  DeclaredField = Struct.new(:name, :type, :null, :index, :options, keyword_init: true)
   module ClassMethods
     # TODO: Check  all models at rails init app? like migrations?
 
@@ -36,7 +39,7 @@ module RailsFields
         ")
       end
 
-      declared_fields << OpenStruct.new(name: name.to_s, type:, null:, index:)
+      declared_fields << DeclaredField.new(name: name.to_s, type:, null:, index:)
     end
 
     def gql_type
