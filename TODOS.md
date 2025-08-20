@@ -18,3 +18,12 @@
 - Impact: Potential NameError in environments that don't autoload all ActiveSupport modules.
 - Proposed change: Add `require 'active_support/actionable_error'` at the top of `lib/rails_fields/errors/rails_fields_mismatch_error.rb`.
 - Status: TODO (defer implementation)
+
+## Fix rename detection logic in `detect_changes`
+- Problems:
+  - `added[:type]` is a hash while `removed[:type]` is a symbol; direct comparison fails.
+  - One-to-one rename validation compares types to names.
+- Proposed change:
+  - Compare `added[:type][:name]` to `removed[:type]` when identifying potential renames.
+  - Validate one-to-one by field names; adjust rejections accordingly.
+- Status: TODO (defer implementation)
