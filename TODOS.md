@@ -12,3 +12,9 @@
 - Impact: Possible NoMethodError during enforcement when encountering methods without Ruby source.
 - Proposed change: In `enforce_declared_fields`, capture `loc = instance_method(method).source_location` and ensure `loc && loc.first.start_with?(Rails.root.to_s)`.
 - Status: TODO (defer implementation)
+
+## Explicit require for ActiveSupport::ActionableError
+- Problem: `RailsFields::Errors::RailsFieldsMismatchError` includes `ActiveSupport::ActionableError` without requiring it explicitly.
+- Impact: Potential NameError in environments that don't autoload all ActiveSupport modules.
+- Proposed change: Add `require 'active_support/actionable_error'` at the top of `lib/rails_fields/errors/rails_fields_mismatch_error.rb`.
+- Status: TODO (defer implementation)
