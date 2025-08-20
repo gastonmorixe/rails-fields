@@ -157,34 +157,34 @@ module RailsFields
           field_type = change[:type]
           field_type_for_db = field_type[:name]
           # TODO: custom mapper
-          migration_code << "    add_column :#{model_name.tableize}, :#{change[:name]}, :#{field_type_for_db}"
+          migration_code << "    add_column :#{model.table_name}, :#{change[:name]}, :#{field_type_for_db}"
         end
 
         # Handle added associations
         model_changes.dig(:associations_added)&.each do |assoc|
-          migration_code << "    add_reference :#{model_name.tableize}, :#{assoc.name}, foreign_key: true"
+          migration_code << "    add_reference :#{model.table_name}, :#{assoc.name}, foreign_key: true"
         end
 
         # Handle removed associations
         model_changes.dig(:associations_removed)&.each do |assoc|
-          migration_code << "    remove_reference :#{model_name.tableize}, :#{assoc.name}, foreign_key: true"
+          migration_code << "    remove_reference :#{model.table_name}, :#{assoc.name}, foreign_key: true"
         end
 
         # Handle removed fields
         model_changes.dig(:removed)&.each do |change|
-          migration_code << "    remove_column :#{model_name.tableize}, :#{change[:name]}"
+          migration_code << "    remove_column :#{model.table_name}, :#{change[:name]}"
         end
 
         # Handle renamed fields
         model_changes.dig(:renamed)&.each do |change|
           change_to = change[:to]
-          migration_code << "    rename_column :#{model_name.tableize}, :#{change[:from]}, :#{change_to}"
+          migration_code << "    rename_column :#{model.table_name}, :#{change[:from]}, :#{change_to}"
         end
 
         # Handle fields' type changes
         model_changes.dig(:type_changed)&.each do |change|
           change_to = change[:to][:name]
-          migration_code << "    change_column :#{model_name.tableize}, :#{change[:name]}, :#{change_to}"
+          migration_code << "    change_column :#{model.table_name}, :#{change[:name]}, :#{change_to}"
         end
 
         migration_code << "  end"
