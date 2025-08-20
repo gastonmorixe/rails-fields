@@ -116,7 +116,9 @@ module RailsFields
         end
 
         declared_foreign_keys = declared_associations.map(&:foreign_key).map(&:to_sym)
-        existing_foreign_keys = ActiveRecord::Base.connection.foreign_keys(model.table_name).map(&:options).map { |opt| opt[:column].to_sym }
+        existing_foreign_keys = ActiveRecord::Base.connection
+          .foreign_keys(model.table_name)
+          .map { |fk| fk.respond_to?(:column) ? fk.column.to_sym : fk.options[:column].to_sym }
 
         associations_added = declared_associations.select do |reflection|
           !existing_foreign_keys.include?(reflection.foreign_key.to_sym)
