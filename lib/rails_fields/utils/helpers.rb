@@ -1,6 +1,8 @@
 module RailsFields
   module Utils
     class << self
+      # Minimal wrapper to represent associations in changes
+      AssociationRef = Struct.new(:name)
       def allowed_types
         # TODO: this may depend on the current database adapter or mapper
         ActiveRecord::Base.connection.native_database_types.keys
@@ -124,9 +126,12 @@ module RailsFields
           !existing_foreign_keys.include?(reflection.foreign_key.to_sym)
         end
 
-        associations_removed = existing_foreign_keys.select do |foreign_key|
-          !declared_foreign_keys.include?(foreign_key)
-        end.map { |foreign_key| model.reflections.values.find { |reflection| reflection.foreign_key == foreign_key.to_s } }
+        associations_removed = existing_foreign_keys
+          .select { |foreign_key| !declared_foreign_keys.include?(foreign_key) }
+          .map do |foreign_key|
+            model.reflections.values.find { |reflection| reflection.foreign_key == foreign_key.to_s } ||
+              AssociationRef.new(foreign_key.to_s.delete_suffix('_id').to_sym)
+          end
 
         model_changes[:associations_added] = associations_added
         model_changes[:associations_removed] = associations_removed
