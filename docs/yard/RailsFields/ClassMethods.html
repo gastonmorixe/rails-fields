@@ -318,9 +318,6 @@
       <pre class="lines">
 
 
-30
-31
-32
 33
 34
 35
@@ -328,10 +325,13 @@
 37
 38
 39
-40</pre>
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_field'>field</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='label'>null:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>index:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># Check if type is a valid GraphQL type
@@ -342,7 +342,7 @@
     </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_declared_fields'>declared_fields</span> <span class='op'>&lt;&lt;</span> <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='label'>type:</span><span class='comma'>,</span> <span class='label'>null:</span><span class='comma'>,</span> <span class='label'>index:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_declared_fields'>declared_fields</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="DeclaredField.html" title="RailsFields::DeclaredField (class)">DeclaredField</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='label'>type:</span><span class='comma'>,</span> <span class='label'>null:</span><span class='comma'>,</span> <span class='label'>index:</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -381,12 +381,12 @@
       <pre class="lines">
 
 
-5
-6
-7</pre>
+8
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_declared_fields'>declared_fields</span>
   <span class='ivar'>@declared_fields</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -411,12 +411,12 @@
       <pre class="lines">
 
 
-9
-10
-11</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 9</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_declared_fields='>declared_fields=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@declared_fields</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -441,14 +441,6 @@
       <pre class="lines">
 
 
-87
-88
-89
-90
-91
-92
-93
-94
 95
 96
 97
@@ -477,10 +469,18 @@
 120
 121
 122
-123</pre>
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 87</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enforce_declared_fields'>enforce_declared_fields</span>
   <span class='id identifier rubyid_database_columns'>database_columns</span> <span class='op'>=</span> <span class='id identifier rubyid_column_names'>column_names</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span>
@@ -566,9 +566,6 @@
       <pre class="lines">
 
 
-30
-31
-32
 33
 34
 35
@@ -576,10 +573,13 @@
 37
 38
 39
-40</pre>
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_field'>field</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='label'>null:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>index:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># Check if type is a valid GraphQL type
@@ -590,7 +590,7 @@
     </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_declared_fields'>declared_fields</span> <span class='op'>&lt;&lt;</span> <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='label'>type:</span><span class='comma'>,</span> <span class='label'>null:</span><span class='comma'>,</span> <span class='label'>index:</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_declared_fields'>declared_fields</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="DeclaredField.html" title="RailsFields::DeclaredField (class)">DeclaredField</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='label'>type:</span><span class='comma'>,</span> <span class='label'>null:</span><span class='comma'>,</span> <span class='label'>index:</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -612,9 +612,6 @@
       <pre class="lines">
 
 
-42
-43
-44
 45
 46
 47
@@ -655,18 +652,30 @@
 82
 83
 84
-85</pre>
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gql_type'>gql_type</span>
+  <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>GraphQL</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GraphQL is not available. Add `gem &#39;graphql&#39;` and install it, or avoid calling `gql_type`.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="../RailsFields.html" title="RailsFields (module)">RailsFields</a></span></span><span class='period'>.</span><span class='id identifier rubyid_processed_classes'><span class='object_link'><a href="../RailsFields.html#processed_classes-class_method" title="RailsFields.processed_classes (method)">processed_classes</a></span></span><span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../RailsFields.html" title="RailsFields (module)">RailsFields</a></span></span><span class='period'>.</span><span class='id identifier rubyid_processed_classes'><span class='object_link'><a href="../RailsFields.html#processed_classes-class_method" title="RailsFields.processed_classes (method)">processed_classes</a></span></span><span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_present?'>present?</span>
 
   <span class='id identifier rubyid_fields'>fields</span> <span class='op'>=</span> <span class='id identifier rubyid_declared_fields'>declared_fields</span>
   <span class='id identifier rubyid_owner_self'>owner_self</span> <span class='op'>=</span> <span class='kw'>self</span>
 
-  <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>BaseObject</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_base_object'>base_object</span> <span class='op'>=</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>BaseObject</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>BaseObject</span> <span class='op'>:</span> <span class='op'>::</span><span class='const'>GraphQL</span><span class='op'>::</span><span class='const'>Schema</span><span class='op'>::</span><span class='const'>Object</span>
+  <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_base_object'>base_object</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='comment'># graphql_name &quot;#{owner_self.name}Type&quot;
 </span>    <span class='id identifier rubyid_graphql_name'>graphql_name</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_owner_self'>owner_self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A type representing a </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_owner_self'>owner_self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -676,8 +685,9 @@
 </span>
       <span class='comment'># Assuming a proper mapping from your custom types to GraphQL types
 </span>      <span class='comment'># TODO: use a better method or block
-</span>      <span class='id identifier rubyid_field_gql_type'>field_gql_type</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='symbol'>:id</span> <span class='op'>?</span> <span class='const'>GraphQL</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>ID</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="Utils.html" title="RailsFields::Utils (module)">Utils</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Utils.html#RAILS_TO_GQL_TYPE_MAP-constant" title="RailsFields::Utils::RAILS_TO_GQL_TYPE_MAP (constant)">RAILS_TO_GQL_TYPE_MAP</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
-      <span class='id identifier rubyid_field'>field</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_field_gql_type'>field_gql_type</span>
+</span>      <span class='id identifier rubyid_field_name'>field_name</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='id identifier rubyid_field_gql_type'>field_gql_type</span> <span class='op'>=</span> <span class='id identifier rubyid_field_name'>field_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id</span><span class='tstring_end'>&#39;</span></span> <span class='op'>?</span> <span class='const'>GraphQL</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>ID</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="Utils.html" title="RailsFields::Utils (module)">Utils</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Utils.html#RAILS_TO_GQL_TYPE_MAP-constant" title="RailsFields::Utils::RAILS_TO_GQL_TYPE_MAP (constant)">RAILS_TO_GQL_TYPE_MAP</a></span></span><span class='lbracket'>[</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_field'>field</span> <span class='id identifier rubyid_field_name'>field_name</span><span class='comma'>,</span> <span class='id identifier rubyid_field_gql_type'>field_gql_type</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -724,13 +734,13 @@
       <pre class="lines">
 
 
-13
-14
-15
-16</pre>
+16
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/rails_fields/class_methods.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_migration'>write_migration</span><span class='lparen'>(</span><span class='label'>index:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_changes'>changes</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RailsFields.html" title="RailsFields (module)">RailsFields</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Utils.html" title="RailsFields::Utils (module)">Utils</a></span></span><span class='period'>.</span><span class='id identifier rubyid_detect_changes'><span class='object_link'><a href="Utils.html#detect_changes-class_method" title="RailsFields::Utils.detect_changes (method)">detect_changes</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -746,9 +756,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Aug 28 02:43:30 2023 by
+  Generated on Thu Aug 21 00:35:57 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.34 (ruby-3.2.2).
+  0.9.37 (ruby-3.4.5).
 </div>
 
     </div>
