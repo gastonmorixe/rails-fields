@@ -2,7 +2,7 @@
   <a href="https://rails-fields.dev" target="_blank"><img src="./assets/logo.svg" width="300" /></a>
 </p>
 
-[![Gem Version](https://badge.fury.io/rb/rails-fields.svg?v=320)](https://badge.fury.io/rb/rails-fields)
+[![Gem Version](https://badge.fury.io/rb/rails-fields.svg?v=330)](https://badge.fury.io/rb/rails-fields)
 
 # Rails Fields
 
