@@ -37,7 +37,11 @@ module RailsFields
       # @param model [ActiveRecord::Base] the model to check
       # @return [Hash, Nil] the changes detected
       def detect_changes(model)
-        previous_fields = model.attribute_types.to_h { |k, v| [k.to_sym, v.type] }
+        # Exclude the primary key (e.g., :id) from comparisons
+        primary_key = model.primary_key&.to_sym
+        previous_fields = model.attribute_types
+                           .to_h { |k, v| [k.to_sym, v.type] }
+                           .reject { |name, _| name == primary_key }
         declared_fields = model.declared_fields.to_h do |f|
           [f.name.to_sym, {
             name: f.type.to_sym,
@@ -90,8 +94,11 @@ module RailsFields
         # Detect potential renames
         potential_renames = []
         model_changes[:removed].each do |removed_field|
-          # puts "Log: removed_field: #{removed_field}"
-          added_field = model_changes[:added].find { |f| f[:type] == removed_field[:type] }
+          # Match by type name (normalize Hash/Scalar)
+          added_field = model_changes[:added].find do |f|
+            added_type = f[:type].is_a?(Hash) ? f[:type][:name] : f[:type]
+            added_type == removed_field[:type]
+          end
           if added_field
             potential_renames << { from: removed_field[:name],
                                    to: added_field[:name] }
@@ -104,8 +111,8 @@ module RailsFields
 
         # Filter out incorrect renames (one-to-one mapping)
         potential_renames.each do |rename|
-          next unless model_changes[:added].count { |f| f[:type] == rename[:to].to_sym } == 1 &&
-            model_changes[:removed].count { |f| f[:type] == rename[:from].to_sym } == 1
+          next unless model_changes[:added].count { |f| f[:name] == rename[:to].to_sym } == 1 &&
+            model_changes[:removed].count { |f| f[:name] == rename[:from].to_sym } == 1
 
           model_changes[:renamed] << rename
           model_changes[:added].reject! { |f| f[:name] == rename[:to].to_sym }

@@ -14,7 +14,19 @@ module RailsFields
     end
 
     initializer "rails_fields.middleware" do |app|
-      app.middleware.insert_after ActiveRecord::Migration::CheckPending, RailsFields::EnforceFieldsMiddleware
+      # In Rails 8, ActiveRecord::Migration::CheckPending was removed.
+      # Try to insert after it when present; otherwise, append the middleware.
+      if defined?(Rails::VERSION) && Rails::VERSION::MAJOR >= 8
+        # Rails 8 removed ActiveRecord::Migration::CheckPending from the stack
+        app.middleware.use RailsFields::EnforceFieldsMiddleware
+      else
+        begin
+          app.middleware.insert_after ActiveRecord::Migration::CheckPending, RailsFields::EnforceFieldsMiddleware
+        rescue StandardError
+          # Fallback for environments where insert_after target is unavailable
+          app.middleware.use RailsFields::EnforceFieldsMiddleware
+        end
+      end
     end
   end
 end

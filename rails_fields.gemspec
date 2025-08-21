@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "graphql", ">= 2.0.0"
 
   # Development Dependencies
+  spec.add_development_dependency "sqlite3"
   spec.add_development_dependency "graphql"
   spec.add_development_dependency "yard"
 end

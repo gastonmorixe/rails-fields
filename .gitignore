@@ -11,5 +11,6 @@ pkg/*
 .env
 spec/dummy/tmp/*
 spec/dummy/log/*.log
+*.log
 .idea
 .yardoc
