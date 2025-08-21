@@ -1,4 +1,7 @@
 module RailsFields
+  # Lightweight, typed container for field declarations
+  # Include :options to maintain compatibility with code that reads it
+  DeclaredField = Struct.new(:name, :type, :null, :index, :options, keyword_init: true)
   module ClassMethods
     # TODO: Check  all models at rails init app? like migrations?
 
@@ -36,16 +39,20 @@ module RailsFields
         ")
       end
 
-      declared_fields << OpenStruct.new(name: name.to_s, type:, null:, index:)
+      declared_fields << DeclaredField.new(name: name.to_s, type:, null:, index:)
     end
 
     def gql_type
+      unless defined?(GraphQL)
+        raise "GraphQL is not available. Add `gem 'graphql'` and install it, or avoid calling `gql_type`."
+      end
       return RailsFields.processed_classes[self] if RailsFields.processed_classes[self].present?
 
       fields = declared_fields
       owner_self = self
 
-      type = Class.new(::Types::BaseObject) do
+      base_object = defined?(::Types::BaseObject) ? ::Types::BaseObject : ::GraphQL::Schema::Object
+      type = Class.new(base_object) do
         # graphql_name "#{owner_self.name}Type"
         graphql_name "#{owner_self.name}"
         description "A type representing a #{owner_self.name}"
@@ -55,8 +62,9 @@ module RailsFields
 
           # Assuming a proper mapping from your custom types to GraphQL types
           # TODO: use a better method or block
-          field_gql_type = f.name == :id ? GraphQL::Types::ID : Utils::RAILS_TO_GQL_TYPE_MAP[f.type]
-          field f.name, field_gql_type
+          field_name = f.name.to_s
+          field_gql_type = field_name == 'id' ? GraphQL::Types::ID : Utils::RAILS_TO_GQL_TYPE_MAP[f.type]
+          field field_name, field_gql_type
         end
       end
 

@@ -18,7 +18,23 @@ straightforward as possible.
 ### Changed
  
 ### Fixed
- 
+
+## [0.3.3] - 2025-08-21
+
+### Added
+- Dummy Rails app with Minitest suite for internal testing
+- Rake test task and default `rake test`
+
+### Changed
+- Railtie: update middleware insertion for Rails 8 (fallback to `use` when `ActiveRecord::Migration::CheckPending` is absent)
+- Utils.detect_changes: ignore model primary key in diffs; normalize type matching; improve rename detection
+
+### Fixed
+- False-positive removal of primary key (e.g., `:id`) from detected changes
+- Rename detection failing when comparing type hashes vs. symbols
+- Middleware insertion error on Rails 8 trying to insert after removed `CheckPending`
+- Ignore `*.log` files across the repo
+
 ## [1.2.4] - 2017-03-15
   
 Here we would have the update steps for 1.2.4 for people to follow.

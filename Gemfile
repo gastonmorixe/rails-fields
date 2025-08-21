@@ -15,6 +15,7 @@ group :development, :test do
   gem "railties"
   gem "activerecord"
   gem "activesupport"
+  gem "sqlite3"
 end
 
 # gem "solargraph-rails", "~> 1.1.0"

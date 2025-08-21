@@ -1,6 +1,8 @@
 module RailsFields
   module Utils
     class << self
+      # Minimal wrapper to represent associations in changes
+      AssociationRef = Struct.new(:name)
       def allowed_types
         # TODO: this may depend on the current database adapter or mapper
         ActiveRecord::Base.connection.native_database_types.keys
@@ -35,7 +37,11 @@ module RailsFields
       # @param model [ActiveRecord::Base] the model to check
       # @return [Hash, Nil] the changes detected
       def detect_changes(model)
-        previous_fields = model.attribute_types.to_h { |k, v| [k.to_sym, v.type] }
+        # Exclude the primary key (e.g., :id) from comparisons
+        primary_key = model.primary_key&.to_sym
+        previous_fields = model.attribute_types
+                           .to_h { |k, v| [k.to_sym, v.type] }
+                           .reject { |name, _| name == primary_key }
         declared_fields = model.declared_fields.to_h do |f|
           [f.name.to_sym, {
             name: f.type.to_sym,
@@ -88,8 +94,11 @@ module RailsFields
         # Detect potential renames
         potential_renames = []
         model_changes[:removed].each do |removed_field|
-          # puts "Log: removed_field: #{removed_field}"
-          added_field = model_changes[:added].find { |f| f[:type] == removed_field[:type] }
+          # Match by type name (normalize Hash/Scalar)
+          added_field = model_changes[:added].find do |f|
+            added_type = f[:type].is_a?(Hash) ? f[:type][:name] : f[:type]
+            added_type == removed_field[:type]
+          end
           if added_field
             potential_renames << { from: removed_field[:name],
                                    to: added_field[:name] }
@@ -102,8 +111,8 @@ module RailsFields
 
         # Filter out incorrect renames (one-to-one mapping)
         potential_renames.each do |rename|
-          next unless model_changes[:added].count { |f| f[:type] == rename[:to].to_sym } == 1 &&
-            model_changes[:removed].count { |f| f[:type] == rename[:from].to_sym } == 1
+          next unless model_changes[:added].count { |f| f[:name] == rename[:to].to_sym } == 1 &&
+            model_changes[:removed].count { |f| f[:name] == rename[:from].to_sym } == 1
 
           model_changes[:renamed] << rename
           model_changes[:added].reject! { |f| f[:name] == rename[:to].to_sym }
@@ -116,15 +125,20 @@ module RailsFields
         end
 
         declared_foreign_keys = declared_associations.map(&:foreign_key).map(&:to_sym)
-        existing_foreign_keys = ActiveRecord::Base.connection.foreign_keys(model.table_name).map(&:options).map { |opt| opt[:column].to_sym }
+        existing_foreign_keys = ActiveRecord::Base.connection
+          .foreign_keys(model.table_name)
+          .map { |fk| fk.respond_to?(:column) ? fk.column.to_sym : fk.options[:column].to_sym }
 
         associations_added = declared_associations.select do |reflection|
           !existing_foreign_keys.include?(reflection.foreign_key.to_sym)
         end
 
-        associations_removed = existing_foreign_keys.select do |foreign_key|
-          !declared_foreign_keys.include?(foreign_key)
-        end.map { |foreign_key| model.reflections.values.find { |reflection| reflection.foreign_key == foreign_key.to_s } }
+        associations_removed = existing_foreign_keys
+          .select { |foreign_key| !declared_foreign_keys.include?(foreign_key) }
+          .map do |foreign_key|
+            model.reflections.values.find { |reflection| reflection.foreign_key == foreign_key.to_s } ||
+              AssociationRef.new(foreign_key.to_s.delete_suffix('_id').to_sym)
+          end
 
         model_changes[:associations_added] = associations_added
         model_changes[:associations_removed] = associations_removed
@@ -150,34 +164,34 @@ module RailsFields
           field_type = change[:type]
           field_type_for_db = field_type[:name]
           # TODO: custom mapper
-          migration_code << "    add_column :#{model_name.tableize}, :#{change[:name]}, :#{field_type_for_db}"
+          migration_code << "    add_column :#{model.table_name}, :#{change[:name]}, :#{field_type_for_db}"
         end
 
         # Handle added associations
         model_changes.dig(:associations_added)&.each do |assoc|
-          migration_code << "    add_reference :#{model_name.tableize}, :#{assoc.name}, foreign_key: true"
+          migration_code << "    add_reference :#{model.table_name}, :#{assoc.name}, foreign_key: true"
         end
 
         # Handle removed associations
         model_changes.dig(:associations_removed)&.each do |assoc|
-          migration_code << "    remove_reference :#{model_name.tableize}, :#{assoc.name}, foreign_key: true"
+          migration_code << "    remove_reference :#{model.table_name}, :#{assoc.name}, foreign_key: true"
         end
 
         # Handle removed fields
         model_changes.dig(:removed)&.each do |change|
-          migration_code << "    remove_column :#{model_name.tableize}, :#{change[:name]}"
+          migration_code << "    remove_column :#{model.table_name}, :#{change[:name]}"
         end
 
         # Handle renamed fields
         model_changes.dig(:renamed)&.each do |change|
           change_to = change[:to]
-          migration_code << "    rename_column :#{model_name.tableize}, :#{change[:from]}, :#{change_to}"
+          migration_code << "    rename_column :#{model.table_name}, :#{change[:from]}, :#{change_to}"
         end
 
         # Handle fields' type changes
         model_changes.dig(:type_changed)&.each do |change|
           change_to = change[:to][:name]
-          migration_code << "    change_column :#{model_name.tableize}, :#{change[:name]}, :#{change_to}"
+          migration_code << "    change_column :#{model.table_name}, :#{change[:name]}, :#{change_to}"
         end
 
         migration_code << "  end"
